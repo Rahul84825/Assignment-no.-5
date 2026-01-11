@@ -1,10 +1,7 @@
-import useFetch from "../Hooks/useFetch";
+import React from "react";
+
 
 function Products() {
-  const { data, loading, error } = useFetch(
-    // yet have to add the url for api; 
-  );
-
   const items = Array.from({ length: 50 }, (_, i) => i);
 
   return (
