@@ -2,6 +2,11 @@ import React from "react";
 
 
 function Products() {
+  
+  const { data, loading, error } = useFetch(
+    "https://api.escuelajs.co/api/v1/products"
+  );
+
   const items = Array.from({ length: 50 }, (_, i) => i);
 
   return (
