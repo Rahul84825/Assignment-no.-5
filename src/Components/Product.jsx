@@ -1,14 +1,21 @@
 import React from "react";
+import useFetch from "../Hooks/useFetch";
 
 
 function Products() {
-  
+
   const { data, loading, error } = useFetch(
     "https://api.escuelajs.co/api/v1/products"
   );
 
-  const items = Array.from({ length: 50 }, (_, i) => i);
-
+  const colors = Array.from({ length: 50 }, function (_, index) {
+    return {
+      id: index,
+      color: "hsl(" + index * 15 + ", 70%, 50%)",
+      title: "Color Lorem ipsum dolor sit amet.",
+    };
+  });
+  
   return (
     <div className="min-h-screen bg-black">
       <div className="fixed top-0 left-0 w-full bg-black z-50">
