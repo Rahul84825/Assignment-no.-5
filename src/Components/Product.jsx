@@ -1,7 +1,6 @@
 import useFetch from "../Hooks/useFetch";
 
 function Products() {
-
   const { data, loading, error } = useFetch(
     "https://api.escuelajs.co/api/v1/products"
   );
@@ -23,25 +22,35 @@ function Products() {
       </div>
 
       <div className="px-10 pt-24 pb-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {colors.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className="border border-gray-500 p-4 text-center"
-              >
-                <div
-                  className="w-full aspect-square mb-3"
-                  style={{ backgroundColor: item.color }}
-                ></div>
+        {loading && (
+          <p className="text-white text-center">Loading...</p>
+        )}
 
-                <p className="text-gray-300 text-sm">
-                  {item.title}
-                </p>
-              </div>
-            );
-          })}
-        </div>
+        {error && (
+          <p className="text-red-500 text-center">{error}</p>
+        )}
+
+        {!loading && !error && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {colors.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="border border-gray-500 p-4 text-center"
+                >
+                  <div
+                    className="w-full aspect-square mb-3"
+                    style={{ backgroundColor: item.color }}
+                  ></div>
+
+                  <p className="text-gray-300 text-sm">
+                    {item.title}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
